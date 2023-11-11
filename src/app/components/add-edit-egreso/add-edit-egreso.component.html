@@ -1,0 +1,36 @@
+<app-progress-bar *ngIf="loading"></app-progress-bar>
+<div *ngIf="!loading" class="row mt-1">
+    <div class="col-lg-4 offset-lg-4">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
+            <div class="card-header text-center">{{ operacion }} Egreso</div>
+            <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="addEgreso()">
+                    <input formControlName="fecha" type="date" class="form-control" placeholder="Ingrese fecha" name="fecha" id="fechaInput">
+                    <span *ngIf="form.get('fecha')?.hasError('required') && form.get('fecha')?.touched">
+                        El campo fecha es <strong>requerido</strong>
+                    </span>
+                    <input formControlName="categoria" type="text" class="form-control mt-2" placeholder="Ingrese categoria" name="categoria" id="categoriaInput">
+                    <span *ngIf="form.get('categoria')?.hasError('required') && form.get('categoria')?.touched">
+                        El campo categoria es <strong>requerido</strong>
+                    </span>
+                    <input formControlName="detalle" type="text" class="form-control mt-2" placeholder="Ingrese detalle" name="detalle" id="detalleInput">
+                    <span *ngIf="form.get('detalle')?.hasError('required') && form.get('detalle')?.touched">
+                        El campo detalle es <strong>requerido</strong>
+                    </span>
+                    <input formControlName="valor" type="number" class="form-control mt-2" placeholder="Ingrese valor" name="valor" id="valorInput">
+                    <span *ngIf="form.get('valor')?.hasError('required') && form.get('valor')?.touched">
+                        El campo valor es <strong>requerido</strong>
+                    </span>
+                    <div class="row mt-2 text-center">
+                        <div class="col-lg-6">
+                            <button routerLink="/" type="button" class="btn btn-danger">Volver</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button [disabled]="form.invalid" type="submit" class="btn btn-success">Aceptar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
